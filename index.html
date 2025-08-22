@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tulipanes para ti ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: linear-gradient(to top, #ff9966, #ff5e62, #ff9966);
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    .campo {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Césped */
+    .cesped {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(to top, #004d00, #009933);
+      clip-path: polygon(0 100%, 100% 100%, 100% 50%, 0 60%);
+    }
+
+    /* Tulipanes y flores (sin cambios, tu código existente) */
+    .tulipan { position: relative; margin: 0 25px; animation: balanceo 5s ease-in-out infinite; }
+    .tallo { width: 6px; height: 160px; background: linear-gradient(to bottom, #006600, #004d00); margin: 0 auto; border-radius: 3px; }
+    .flor { position: absolute; bottom: 150px; left: 50%; transform: translateX(-50%); width: 70px; height: 90px; border-radius: 50% 50% 40% 40%; box-shadow: 0px 10px 15px rgba(0,0,0,0.3); animation: abrir 4s ease-in-out infinite alternate; }
+    .flor::before, .flor::after { content: ""; position: absolute; width: 70px; height: 90px; border-radius: 50% 50% 40% 40%; top: 0; transition: all 1s ease; }
+    .flor::before { left: -35px; transform: rotate(-20deg); }
+    .flor::after { right: -35px; transform: rotate(20deg); }
+    .rojo{ background: radial-gradient(circle at bottom, #ff3366, #cc0033); } .rojo::before,.rojo::after{ background: radial-gradient(circle at bottom, #ff4d88, #cc0044); }
+    .rosa{ background: radial-gradient(circle at bottom, #ff80bf, #e60073); } .rosa::before,.rosa::after{ background: radial-gradient(circle at bottom, #ffb3d9, #cc0066); }
+    .amarillo{ background: radial-gradient(circle at bottom, #ffff66, #ffcc00); } .amarillo::before,.amarillo::after{ background: radial-gradient(circle at bottom, #ffff99, #ff9900); }
+    .azul{ background: radial-gradient(circle at bottom, #3399ff, #0033cc); } .azul::before,.azul::after{ background: radial-gradient(circle at bottom, #66b3ff, #001a66); }
+    .morado{ background: radial-gradient(circle at bottom, #9933ff, #4d0099); } .morado::before,.morado::after{ background: radial-gradient(circle at bottom, #b366ff, #330066); }
+    .naranja{ background: radial-gradient(circle at bottom, #ff944d, #cc5200); } .naranja::before,.naranja::after{ background: radial-gradient(circle at bottom, #ffbb99, #993d00); }
+    .blanco{ background: radial-gradient(circle at bottom, #ffffff, #cccccc); } .blanco::before,.blanco::after{ background: radial-gradient(circle at bottom, #f2f2f2, #999999); }
+
+    .hoja{ position: absolute; bottom: 50px; width: 60px; height: 100px; background: radial-gradient(circle at bottom, #009933, #006600); border-radius: 0 80% 0 80%; transform: rotate(-30deg); left: -30px; z-index: -1; }
+    .hoja2{ position: absolute; bottom: 40px; width: 60px; height: 100px; background: radial-gradient(circle at bottom, #00b33c, #004d1a); border-radius: 80% 0 80% 0; transform: rotate(30deg); right: -30px; z-index: -1; }
+
+    @keyframes balanceo { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+    @keyframes abrir { 0% { transform: translateX(-50%) scale(0.9); } 100% { transform: translateX(-50%) scale(1.1); } }
+
+    .corazon { position: absolute; bottom: 150px; width: 20px; height: 20px; background: red; transform: rotate(45deg); animation: subir 6s linear infinite; }
+    .corazon::before, .corazon::after { content: ""; position: absolute; width: 20px; height: 20px; background: red; border-radius: 50%; }
+    .corazon::before { top: -10px; left: 0; } .corazon::after { left: 10px; top: 0; }
+    @keyframes subir { 0% { transform: translateY(0) scale(0.5) rotate(45deg); opacity: 1; } 100% { transform: translateY(-500px) scale(1.2) rotate(45deg); opacity: 0; } }
+
+    /* CARTA */
+    .carta {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      max-width: 90%;
+      background: #fff0f5;
+      border: 2px solid #ff3366;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      z-index: 100;
+    }
+
+    .carta.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .carta img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .carta button {
+      margin-top: 15px;
+      padding: 8px 15px;
+      background: #ff3366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="campo">
+    <div class="cesped"></div>
+
+    <!-- Tulipanes de diferentes colores -->
+    <div class="tulipan"><div class="tallo"></div><div class="flor rojo"></div><div class="hoja"></div><div class="hoja2"></div></div>
+    <div class="tulipan"><div class="tallo"></div><div class="flor rosa"></div><div class="hoja"></div><div class="hoja2"></div></div>
+    <div class="tulipan"><div class="tallo"></div><div class="flor amarillo"></div><div class="hoja"></div><div class="hoja2"></div></div>
+    <div class="tulipan"><div class="tallo"></div><div class="flor azul"></div><div class="hoja"></div><div class="hoja2"></div></div>
+    <div class="tulipan"><div class="tallo"></div><div class="flor morado"></div><div class="hoja"></div><div class="hoja2"></div></div>
+    <div class="tulipan"><div class="tallo"></div><div class="flor naranja"></div><div class="hoja"></div><div class="hoja2"></div></div>
+    <div class="tulipan"><div class="tallo"></div><div class="flor blanco"></div><div class="hoja"></div><div class="hoja2"></div></div>
+
+    <!-- Corazones flotando -->
+    <div class="corazon" style="left:10%; animation-delay:0s;"></div>
+    <div class="corazon" style="left:30%; animation-delay:2s;"></div>
+    <div class="corazon" style="left:50%; animation-delay:4s;"></div>
+    <div class="corazon" style="left:70%; animation-delay:1s;"></div>
+    <div class="corazon" style="left:90%; animation-delay:3s;"></div>
+  </div>
+
+  <!-- Carta -->
+  <div class="carta" id="carta">
+    <h2>En mis sueños ya te conocía hermosa</h2>
+    <img src="hermosa.png" alt="Foto de ella">
+    <button onclick="cerrarCarta()">Cerrar</button>
+  </div>
+
+  <script>
+    // Mostrar carta después de 7 segundos
+    setTimeout(() => {
+      document.getElementById('carta').classList.add('show');
+    }, 5000);
+
+    // Función para cerrar carta
+    function cerrarCarta() {
+      const carta = document.getElementById('carta');
+      carta.classList.remove('show');
+    }
+  </script>
+</body>
+</html>
